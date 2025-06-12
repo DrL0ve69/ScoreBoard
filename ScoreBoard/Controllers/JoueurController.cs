@@ -42,7 +42,7 @@ public class JoueurController : Controller
         {
             return NotFound();
         }
-        return RedirectToAction("Supprimer",joueur);
+        return View("Supprimer",joueur);
     }
     public IActionResult Supprimer(int id) 
     {
