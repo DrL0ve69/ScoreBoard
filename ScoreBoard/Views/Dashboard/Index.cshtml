@@ -9,6 +9,15 @@
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Courriel</th>
+                    @foreach (Joueur joueur in Model) 
+                    {
+
+                        @foreach (Jeu jeu in joueur.Jeux) 
+                        {
+                            <th>@jeu.Nom</th>
+                        }
+                    }
+                    <th>Score total</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,6 +27,11 @@
                         <td>@joueur.Nom</td>
                         <td>@joueur.Prenom</td>
                         <td>@joueur.Courriel</td>
+                        @foreach (Jeu jeu in joueur.Jeux) 
+                        {
+                            <td>@jeu.ScoreJoueur</td>
+                        }
+                        <td>@joueur.Jeux.Sum(j => j.ScoreJoueur)</td>
                     </tr>
                 }
             </tbody>

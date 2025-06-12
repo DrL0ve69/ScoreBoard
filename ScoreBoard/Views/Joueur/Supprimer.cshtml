@@ -8,4 +8,17 @@
 
 @*TODO: Complétez cette vue de façon à  
         confirmer ou annuler la supression*@
+<h3>@Model.Nom, @Model.Prenom</h3>
+<p>
+    Courriel: @Model.Courriel
+</p>
+
+<div>
+    <div>
+        <a class="btn btn-secondary" asp-action="Index">Annuler</a>
+    </div>
+    <div>
+        <a class="btn btn-danger" asp-action="Supprimer" asp-route-id="@Model.Id">Supprimer</a>
+    </div>
+</div>
 
