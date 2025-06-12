@@ -29,22 +29,24 @@ namespace ScoreBoard.DataBase
 
         public Jeu? GetJeu(int id)
         {
-            throw new NotImplementedException();
+            return _context.Jeux.FirstOrDefault(j => j.Id == id); // Récupération d'un jeu par son ID
         }
 
         public List<Jeu> GetJeuxParJoueur(int joueurId)
         {
-            throw new NotImplementedException();
+            return _context.Jeux.Where(j => j.JoueurId == joueurId).ToList(); // Récupération des jeux d'un joueur spécifique
         }
 
         public void Modifier(Jeu jeu)
         {
-            throw new NotImplementedException();
+            _context.Jeux.Update(jeu);
+            _context.SaveChanges();
         }
 
         public void Supprimer(int id)
         {
-            throw new NotImplementedException();
+            _context.Jeux.Remove(GetJeu(id));
+            _context.SaveChanges();
         }
     }
 }
