@@ -1,0 +1,26 @@
+﻿@model List<Joueur>
+<h1>Dashboard Index</h1>
+<div class="row">
+    <div class="col-md-12">
+        <h2>Top Players</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Courriel</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(Joueur joueur in Model)
+                {
+                    <tr>
+                        <td>@joueur.Nom</td>
+                        <td>@joueur.Prenom</td>
+                        <td>@joueur.Courriel</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
