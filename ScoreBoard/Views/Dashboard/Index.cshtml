@@ -9,15 +9,8 @@
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Courriel</th>
-                    @foreach (Joueur joueur in Model) 
-                    {
-
-                        @foreach (Jeu jeu in joueur.Jeux) 
-                        {
-                            <th>@jeu.Nom</th>
-                        }
-                    }
                     <th>Score total</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,11 +20,12 @@
                         <td>@joueur.Nom</td>
                         <td>@joueur.Prenom</td>
                         <td>@joueur.Courriel</td>
-                        @foreach (Jeu jeu in joueur.Jeux) 
-                        {
-                            <td>@jeu.ScoreJoueur</td>
-                        }
                         <td>@joueur.Jeux.Sum(j => j.ScoreJoueur)</td>
+                        <td>
+                            <a class="btn btn-primary" asp-action="Details" asp-route-id="@joueur.Id">
+                                Voir score par jeu
+                            </a>
+                        </td>
                     </tr>
                 }
             </tbody>

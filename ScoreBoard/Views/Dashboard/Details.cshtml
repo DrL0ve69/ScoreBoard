@@ -1,0 +1,30 @@
+﻿@model ScoreBoard.Models.Joueur
+@{
+    int count = 0;
+}
+<h1>Détails du joueur #@Model.Id</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Courriel</th>
+            @foreach (Jeu jeu in Model.Jeux)
+            {
+                <th>@jeu.Nom</th>    
+            }
+            <th>Score total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Nom</td>
+            <td>@Model.Prenom</td>
+            <td>@Model.Courriel</td>
+            @foreach (Jeu jeu in Model.Jeux)
+            {
+                <td>@jeu.ScoreJoueur</td>    
+            }
+            <td>@Model.Jeux.Sum(j => j.ScoreJoueur)</td>
+        </tr>
+</table>

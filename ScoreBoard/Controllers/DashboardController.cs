@@ -15,5 +15,9 @@ namespace ScoreBoard.Controllers
         {
             return View(_joueurRepository.ListeJoueurs);
         }
+        public IActionResult Details(int id) 
+        {
+            return View(_joueurRepository.GetJoueur(id));
+        }
     }
 }
