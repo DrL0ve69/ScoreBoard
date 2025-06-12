@@ -2,7 +2,7 @@
 {
     public class Joueur
     {
-        public int Id { get; set; }
+        public int Id { get; set; } // Clé primaire
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public string? Equipe { get; set; }
