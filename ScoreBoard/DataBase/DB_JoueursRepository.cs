@@ -1,4 +1,5 @@
-﻿using ScoreBoard.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using ScoreBoard.Models;
 
 namespace ScoreBoard.DataBase;
 
@@ -9,11 +10,11 @@ public class DB_JoueursRepository : IJoueurRepository
     {
         _context = context; // Récupération du contexte de la base de données pour le service
     }
-    List<Joueur> IJoueurRepository.ListeJoueurs => _context.Joueurs.ToList();
+    List<Joueur> IJoueurRepository.ListeJoueurs => _context.Joueurs.Include(j => j.Jeux).ToList();
 
     public Joueur? GetJoueur(int id)
     {
-        return _context.Joueurs.FirstOrDefault(j => j.Id == id);
+        return _context.Joueurs.Include(j => j.Jeux).FirstOrDefault(j => j.Id == id);
     }
 
     public void Modifier(Joueur joueur)

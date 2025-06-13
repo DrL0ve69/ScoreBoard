@@ -27,41 +27,49 @@ public static class DB_Seeders
         
         new Joueur 
         { 
-            Id = 1, Nom = "Dupont", Prenom = "Jean", Equipe = "A",
+            Nom = "Dupont", Prenom = "Jean", Equipe = "A",
             Telephone = "613-898-8989", Courriel = "LeJohnny@gmail.com"
         },
         new Joueur 
         { 
-            Id = 2, Nom = "Martin", Prenom = "Marie", Equipe = "B",
+            Nom = "Martin", Prenom = "Marie", Equipe = "B",
             Telephone = "999-999-999", Courriel = "Marie999@gmail.com" 
         },
         new Joueur
         {
-            Id = 3, Nom = "Hubert", Prenom = "Hubert", Equipe = "A",
+            Nom = "Hubert", Prenom = "Hubert", Equipe = "A",
             Telephone = "819-989-6969", Courriel = "hubhub@gmail.com"
         },
         new Joueur
         {
-            Id = 4, Nom = "Martin", Prenom = "Jean-Louis", Equipe = "B",
+            Nom = "Martin", Prenom = "Jean-Louis", Equipe = "B",
             Telephone = "4204206969", Courriel = "LeGrosJoef@gmail.com"
+        },
+        new Joueur
+        {
+            Nom = "Simpson", Prenom = "Homer", Equipe = "A",
+            Telephone = "819-989-6969", Courriel = "hubhub@gmail.com"
+        },
+        new Joueur
+        {
+            Nom = "Gatineau", Prenom = "Gino", Equipe = "B",
+            Telephone = "4204206969", Courriel = "LedoubleG@gmail.com"
         }
     };
-    public static void SeedJoueurs(IApplicationBuilder appBuilder) 
+    public static void Seed(IApplicationBuilder appBuilder) 
     {
-        // ???
-        using (var scope = appBuilder.ApplicationServices.CreateScope())
+        DB_ScoreBoardContext context = appBuilder.ApplicationServices.CreateScope()
+            .ServiceProvider.GetRequiredService<DB_ScoreBoardContext>();
+
+        if (!context.Joueurs.Any())
         {
-            var context = scope.ServiceProvider.GetRequiredService<DB_ScoreBoardContext>();
-            if (!context.Joueurs.Any())
-            {
-                context.Joueurs.AddRange(_listeSeedJoueurs);
-                context.SaveChanges();
-            }
-            else if (!context.Jeux.Any()) 
-            {
-                context.Jeux.AddRange(_listeSeedJeux);
-                context.SaveChanges();
-            }
+            context.Joueurs.AddRange(_listeSeedJoueurs);
+            context.SaveChanges();
+        }
+        if (!context.Jeux.Any())
+        {
+            context.Jeux.AddRange(_listeSeedJeux);
+            context.SaveChanges();
         }
     }
 }
