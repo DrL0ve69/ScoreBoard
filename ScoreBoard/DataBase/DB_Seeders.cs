@@ -27,33 +27,33 @@ public static class DB_Seeders
         
         new Joueur 
         { 
-            Nom = "Dupont", Prenom = "Jean", Equipe = "A",
-            Telephone = "613-898-8989", Courriel = "LeJohnny@gmail.com"
+            Nom = "Dupont", Prenom = "Jean", Equipe = "AAAA",
+            Telephone = "613-898-8989", Courriel = "LeJohnny@scoreboard.ca"
         },
         new Joueur 
         { 
-            Nom = "Martin", Prenom = "Marie", Equipe = "B",
-            Telephone = "999-999-999", Courriel = "Marie999@gmail.com" 
+            Nom = "Martin", Prenom = "Marie", Equipe = "BBBB",
+            Telephone = "999-999-999", Courriel = "Marie999@scoreboard.ca"
         },
         new Joueur
         {
-            Nom = "Hubert", Prenom = "Hubert", Equipe = "A",
-            Telephone = "819-989-6969", Courriel = "hubhub@gmail.com"
+            Nom = "Hubert", Prenom = "Hubert", Equipe = "CCC",
+            Telephone = "819-989-6969", Courriel = "hubhub@scoreboard.ca"
         },
         new Joueur
         {
-            Nom = "Martin", Prenom = "Jean-Louis", Equipe = "B",
-            Telephone = "4204206969", Courriel = "LeGrosJoef@gmail.com"
+            Nom = "Martin", Prenom = "Jean-Louis", Equipe = "BBBB",
+            Telephone = "4204206969", Courriel = "LeGrosJoef@scoreboard.ca"
         },
         new Joueur
         {
-            Nom = "Simpson", Prenom = "Homer", Equipe = "A",
-            Telephone = "819-989-6969", Courriel = "hubhub@gmail.com"
+            Nom = "Simpson", Prenom = "Homer", Equipe = "AAAA",
+            Telephone = "819-989-6969", Courriel = "hubhub@scoreboard.ca"
         },
         new Joueur
         {
-            Nom = "Gatineau", Prenom = "Gino", Equipe = "B",
-            Telephone = "4204206969", Courriel = "LedoubleG@gmail.com"
+            Nom = "Gatineau", Prenom = "Gino", Equipe = "BBBB",
+            Telephone = "4204206969", Courriel = "LedoubleG@scoreboard.ca"
         }
     };
     public static void Seed(IApplicationBuilder appBuilder) 
