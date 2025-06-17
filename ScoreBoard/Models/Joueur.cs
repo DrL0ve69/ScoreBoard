@@ -8,6 +8,6 @@
         public string? Equipe { get; set; }
         public string? Telephone { get; set; }
         public string Courriel { get; set; }
-        public List<Jeu>? Jeux { get; set; }
+        public List<Jeu>? Jeux { get; set; } // Liste des jeux associés au joueur, navigation property
     }
 }
