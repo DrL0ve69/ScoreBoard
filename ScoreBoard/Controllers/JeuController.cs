@@ -5,14 +5,27 @@ namespace ScoreBoard.Controllers
 {
     public class JeuController : Controller
     {
-        private IJeu _jeuRepository;
-        public JeuController(IJeu jeuRepository)
+        private IJeuRepository _jeuRepository;
+        public JeuController(IJeuRepository jeuRepository)
         {
             _jeuRepository = jeuRepository;
         }
         public IActionResult Index()
         {
             return View(_jeuRepository.ListeJeux);
+        }
+        public IActionResult Details(int id)
+        {
+            try 
+            {
+                return View(_jeuRepository.GetJeu(id));
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Log the exception (ex) if necessary
+                return NotFound($"Jeu with ID {id} not found.");
+            }
+
         }
     }
 }

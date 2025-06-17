@@ -12,7 +12,7 @@ builder.Services.AddDbContext<DB_ScoreBoardContext>(options =>
 });
 
 builder.Services.AddScoped<IJoueurRepository, DB_JoueursRepository>();
-builder.Services.AddScoped<IJeu, DB_JeuxRepository>();
+builder.Services.AddScoped<IJeuRepository, DB_JeuxRepository>();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ScoreBoard.DataBase;
 
@@ -11,9 +12,11 @@ using ScoreBoard.DataBase;
 namespace ScoreBoard.Migrations
 {
     [DbContext(typeof(DB_ScoreBoardContext))]
-    partial class DB_ScoreBoardContextModelSnapshot : ModelSnapshot
+    [Migration("20250617211727_Migration_ValidationDatesCorrection1")]
+    partial class Migration_ValidationDatesCorrection1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

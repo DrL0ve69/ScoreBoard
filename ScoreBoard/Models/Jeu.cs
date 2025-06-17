@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ScoreBoard.DataBase;
+using System.ComponentModel.DataAnnotations;
 
 namespace ScoreBoard.Models
 {
@@ -21,14 +22,33 @@ namespace ScoreBoard.Models
         [Display(Name = "Date de sortie")]
         public DateTime DateSortie 
         { 
-            get; set; 
+            get => _dateSortie;
+            set 
+            {
+                if (value > DateTime.Now)
+                {
+                    throw new ArgumentException("La date de sortie ne peut pas être dans le futur.");
+                }
+                _dateSortie = value;
+            }
         }
         
         [Required(ErrorMessage = "La description est obligatoire.")]
         public string Description { get; set; }
 
         private int _joueurId;
-        public int JoueurId { get; set; } // Clé étrangère vers Joueur
+        public int JoueurId // Clé étrangère vers Joueur
+        { 
+            get => _joueurId;
+            set 
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("L'identifiant du joueur doit être supérieur à 0.");
+                }
+                _joueurId = value;
+            }
+        } 
         public Joueur Joueur { get; set; } // Navigation
 
         [Required(ErrorMessage = "Le score du joueur est obligatoire.")]
@@ -39,7 +59,19 @@ namespace ScoreBoard.Models
         [Required(ErrorMessage = "La date d'enregistrement est obligatoire.")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Date d'enregistrement'")]
-        public DateTime DateEnregistrement { get; set; }
+        [Display(Name = "Date d'enregistrement")]
+        public DateTime DateEnregistrement 
+        {
+            get => _dateEnregistrement;
+            set 
+            {
+                if (value > DateTime.Now)
+                {
+                    throw new ArgumentException("La date d'enregistrement ne peut pas être dans le futur.");
+                }
+                _dateEnregistrement = value;
+            }
+        }
+
     }
 }

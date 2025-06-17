@@ -1,6 +1,6 @@
 ﻿namespace ScoreBoard.Models
 {
-    public interface IJeu
+    public interface IJeuRepository
     {
         List<Jeu> ListeJeux { get; }
         public Jeu? GetJeu(int id);

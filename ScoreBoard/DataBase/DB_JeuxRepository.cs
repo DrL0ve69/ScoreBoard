@@ -3,14 +3,14 @@ using ScoreBoard.Models;
 
 namespace ScoreBoard.DataBase
 {
-    public class DB_JeuxRepository : IJeu
+    public class DB_JeuxRepository : IJeuRepository
     {
         private readonly DB_ScoreBoardContext _context;
         public DB_JeuxRepository(DB_ScoreBoardContext context)
         {
             _context = context; // Récupération du contexte de la base de données pour le service
         }
-        List<Jeu> IJeu.ListeJeux => _context.Jeux.Include(j => j.Joueur).ToList();
+        List<Jeu> IJeuRepository.ListeJeux => _context.Jeux.Include(j => j.Joueur).ToList();
 
         public void Ajouter(Jeu jeu)
         {

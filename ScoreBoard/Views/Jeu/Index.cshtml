@@ -19,10 +19,10 @@
             <tr>
                 <td>@jeu.Nom</td>
                 <td>@jeu.Description</td>
-                <td>@jeu.Joueur</td>
+                <td>IdJoueur: @jeu.Joueur.Id</td>
                 <td>@jeu.ScoreJoueur</td>
                 <td>
-                    <a class="btn btn-primary" href="@Url.Action("GetJeu", "Jeu", new { id = jeu.Id })">Détails</a>
+                    <a class="btn btn-primary" href="@Url.Action("Details", "Jeu", new { id = jeu.Id })">Détails</a>
                     <a class="btn btn-secondary" href="@Url.Action("Modifier", "Jeu", new { id = jeu.Id })">
                         Modifier
                     </a>
