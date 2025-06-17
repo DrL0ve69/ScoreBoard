@@ -21,10 +21,11 @@ namespace ScoreBoard.Models
         public string Prenom { get; set; }
 
         [DisplayName("Équipe")]
-        [RegularExpression(@"^[A-Z]{2,4}$", ErrorMessage = "L'équipe doit contenir entre 2 et 4 lettres majuscules.")]
+        [RegularExpression(@"^[A-Z]{2,4}$", ErrorMessage = "Le nom d'équipe doit contenir entre 2 et 4 lettres majuscules.")]
         public string? Equipe { get; set; }
 
         [DisplayName("Téléphone")]
+        [RegularExpression(@"^\(?\d{3}\)?-?\d{3}-?\d{4}$", ErrorMessage = "Le numéro de téléphone doit être au format 123-456-7890 ou (123)-456-7890 ou 1234567890")]
         public string? Telephone { get; set; }
 
         [Required(ErrorMessage = "")]
