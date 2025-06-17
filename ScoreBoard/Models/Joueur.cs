@@ -11,11 +11,11 @@ namespace ScoreBoard.Models
     public class Joueur
     {
         public int Id { get; set; } // Clé primaire
-        [Required(ErrorMessage = "")]
+        [Required(ErrorMessage = "Nom ne peut pas être nul")]
         [StringLength(20, MinimumLength = 2, ErrorMessage = "Le nom doit contenir entre 2 et 20 caractères.")]
         public string Nom { get; set; }
 
-        [Required(ErrorMessage = "")]
+        [Required(ErrorMessage = "Prénom ne peut pas être nul")]
         [DisplayName("Prénom")]
         [Length(2,20,ErrorMessage = "Le prénom doit contenir entre 2 et 20 caractères.")]
         public string Prenom { get; set; }
@@ -28,7 +28,7 @@ namespace ScoreBoard.Models
         [RegularExpression(@"^\(?\d{3}\)?-?\d{3}-?\d{4}$", ErrorMessage = "Le numéro de téléphone doit être au format 123-456-7890 ou (123)-456-7890 ou 1234567890")]
         public string? Telephone { get; set; }
 
-        [Required(ErrorMessage = "")]
+        [Required(ErrorMessage = "Courriel ne peut pas être nul")]
         [EmailAddress(ErrorMessage = "Veuillez entrer une adresse courriel valide.")]
         [RegularExpression(@"^[a-zA-Z0-9._%+-]+@scoreboard\.ca$", ErrorMessage = "Attention aux caractères spéciaux & doit se terminé par @scoreboard.ca")]
         public string Courriel { get; set; }
