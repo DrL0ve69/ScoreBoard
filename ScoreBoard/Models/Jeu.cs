@@ -1,4 +1,5 @@
 ﻿using ScoreBoard.DataBase;
+using ScoreBoard.Models.Validation;
 using System.ComponentModel.DataAnnotations;
 
 namespace ScoreBoard.Models
@@ -10,7 +11,8 @@ namespace ScoreBoard.Models
     L'identifiant du joueur doit exister.
     Le score doit être compris entre 0 et 100.
      */
-    public class Jeu
+
+    public class Jeu : IValidatableObject
     {
         public int Id { get; set; } // Clé primaire
         public string Nom { get; set; }
@@ -27,7 +29,7 @@ namespace ScoreBoard.Models
             {
                 if (value > DateTime.Now)
                 {
-                    throw new ArgumentException("La date de sortie ne peut pas être dans le futur.");
+                    _validationResults.Add(new ValidationResult("class Jeu setter: La date ne peut pas être dans le futur.", ["DateEnregistrement"]));
                 }
                 _dateSortie = value;
             }
@@ -36,19 +38,8 @@ namespace ScoreBoard.Models
         [Required(ErrorMessage = "La description est obligatoire.")]
         public string Description { get; set; }
 
-        private int _joueurId;
-        public int JoueurId // Clé étrangère vers Joueur
-        { 
-            get => _joueurId;
-            set 
-            {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("L'identifiant du joueur doit être supérieur à 0.");
-                }
-                _joueurId = value;
-            }
-        } 
+        [JoueurIdValid]
+        public int JoueurId { get; set; } // Clé étrangère vers Joueur 
         public Joueur Joueur { get; set; } // Navigation
 
         [Required(ErrorMessage = "Le score du joueur est obligatoire.")]
@@ -67,11 +58,15 @@ namespace ScoreBoard.Models
             {
                 if (value > DateTime.Now)
                 {
-                    throw new ArgumentException("La date d'enregistrement ne peut pas être dans le futur.");
+                    _validationResults.Add(new ValidationResult("class Jeu setter: La date ne peut pas être dans le futur.", ["DateEnregistrement"]));
                 }
                 _dateEnregistrement = value;
             }
         }
-
+        private List<ValidationResult> _validationResults = new List<ValidationResult>();
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            return _validationResults;
+        }
     }
 }
