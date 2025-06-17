@@ -8,6 +8,8 @@
         <tr>
             <th>Nom</th>
             <th>Description</th>
+            <th>Joueur actif</th>
+            <th>Score</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -17,6 +19,8 @@
             <tr>
                 <td>@jeu.Nom</td>
                 <td>@jeu.Description</td>
+                <td>@jeu.Joueur</td>
+                <td>@jeu.ScoreJoueur</td>
                 <td>
                     <a class="btn btn-primary" href="@Url.Action("GetJeu", "Jeu", new { id = jeu.Id })">Détails</a>
                     <a class="btn btn-secondary" href="@Url.Action("Modifier", "Jeu", new { id = jeu.Id })">

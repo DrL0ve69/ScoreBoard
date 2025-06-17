@@ -68,6 +68,11 @@ public static class DB_Seeders
         }
         if (!context.Jeux.Any())
         {
+            foreach (Jeu jeu in _listeSeedJeux) 
+            {
+                // Associer le joueur à chaque jeu en utilisant l'ID du joueur
+                jeu.Joueur = _listeSeedJoueurs.FirstOrDefault(j => j.Id == jeu.JoueurId);
+            }
             context.Jeux.AddRange(_listeSeedJeux);
             context.SaveChanges();
         }
