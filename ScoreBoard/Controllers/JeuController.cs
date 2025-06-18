@@ -27,5 +27,21 @@ namespace ScoreBoard.Controllers
             }
 
         }
+        // GET: Jeu/Ajouter
+        public IActionResult Ajouter()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Ajouter(Jeu jeu)
+        {
+            if (ModelState.IsValid)
+            {
+                _jeuRepository.Ajouter(jeu);
+                return RedirectToAction("Index");
+            }
+            return View(jeu);
+        }
     }
 }

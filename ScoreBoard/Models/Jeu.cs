@@ -15,6 +15,8 @@ namespace ScoreBoard.Models
     public class Jeu : IValidatableObject
     {
         public int Id { get; set; } // Clé primaire
+
+        [Required(ErrorMessage = "Le nom du jeu est obligatoire.")]
         public string Nom { get; set; }
 
         private DateTime _dateSortie;
@@ -38,9 +40,9 @@ namespace ScoreBoard.Models
         [Required(ErrorMessage = "La description est obligatoire.")]
         public string Description { get; set; }
 
-        [JoueurIdValid]
+        [JoueurIdValid(ErrorMessage ="Helllooooooooo")]
         public int JoueurId { get; set; } // Clé étrangère vers Joueur 
-        public Joueur Joueur { get; set; } // Navigation
+        public Joueur? Joueur { get; set; } // Navigation
 
         [Required(ErrorMessage = "Le score du joueur est obligatoire.")]
         [Range(0, 100, ErrorMessage = "Le score doit être compris entre 0 et 100.")]
