@@ -10,7 +10,7 @@
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Courriel</th>
-                    <th>Actions: Modifier/Supprimer</th>
+                    <th>Actions: Détails / Modifier/ Supprimer</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,6 +21,7 @@
                         <td>@joueur.Prenom</td>
                         <td>@joueur.Courriel</td>
                         <td>
+                            <a class="btn btn-info" asp-route-id="@joueur.Id" asp-action="Details">Détails</a>
                             <a class="btn btn-secondary" asp-route-id="@joueur.Id" asp-action="Modifier">Modifier</a>
                             <a class="btn btn-danger" asp-route-id="@joueur.Id" asp-action="SupprimerConfirmer">Supprimer</a>
                         </td>

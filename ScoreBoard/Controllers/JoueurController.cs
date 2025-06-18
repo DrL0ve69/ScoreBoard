@@ -14,6 +14,15 @@ public class JoueurController : Controller
     {
         return View(_joueurRepository.ListeJoueurs);
     }
+    public IActionResult Details(int id)
+    {
+        Joueur? joueur = _joueurRepository.GetJoueur(id);
+        if (joueur == null)
+        {
+            return NotFound();
+        }
+        return View(joueur);
+    }
     // GET: Joueur/Modifier/5
     public IActionResult Modifier(int id)
     {
