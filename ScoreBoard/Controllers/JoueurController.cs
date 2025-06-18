@@ -23,6 +23,21 @@ public class JoueurController : Controller
         }
         return View(joueur);
     }
+    // GET: Joueur/Ajouter
+    public IActionResult Ajouter()
+    {
+        return View();
+    }
+    [HttpPost]
+    public IActionResult Ajouter(Joueur joueur)
+    {
+        if (ModelState.IsValid)
+        {
+            _joueurRepository.Ajouter(joueur);
+            return RedirectToAction("Index");
+        }
+        return View(joueur);
+    }
     // GET: Joueur/Modifier/5
     public IActionResult Modifier(int id)
     {

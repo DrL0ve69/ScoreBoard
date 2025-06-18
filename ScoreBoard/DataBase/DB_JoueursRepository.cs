@@ -12,6 +12,12 @@ public class DB_JoueursRepository : IJoueurRepository
     }
     List<Joueur> IJoueurRepository.ListeJoueurs => _context.Joueurs.Include(j => j.Jeux).ToList();
 
+    public void Ajouter(Joueur joueur)
+    {
+        _context.Joueurs.Add(joueur ?? throw new ArgumentNullException(nameof(joueur), "Joueur cannot be null."));
+        _context.SaveChanges();
+    }
+
     public Joueur? GetJoueur(int id)
     {
         return _context.Joueurs.Include(j => j.Jeux).FirstOrDefault(j => j.Id == id);
