@@ -1,0 +1,75 @@
+﻿@model DataViewmodel
+@{
+    ViewData["Title"] = "Stats";
+}
+<h1>Stats: LE TOP 1</h1>
+<div>
+    <h4>Joueur</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.JoueurSelectionne.Nom)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.JoueurSelectionne.Nom)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.JoueurSelectionne.Prenom)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.JoueurSelectionne.Prenom)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.JoueurSelectionne.Equipe)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.JoueurSelectionne.Equipe)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.JoueurSelectionne.Telephone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.JoueurSelectionne.Telephone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.JoueurSelectionne.Courriel)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.JoueurSelectionne.Courriel)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.JoueurSelectionne.Jeux)
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var jeu in Model.JoueurSelectionne.Jeux)
+            {
+                <span class="badge bg-secondary">@jeu.Nom</span>
+            }
+        </dd>
+    </dl>
+</div>
+<h2>Les joueurs par ordre de pointage:</h2>
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Jeux</th>
+            <th>Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var joueur in Model.Joueurs_VM)
+        {
+            <tr>
+                <td>@joueur.Nom</td>
+                <td>
+                    @foreach (var jeu in joueur.Jeux)
+                    {
+                        <span class="badge bg-secondary">@jeu.Nom</span>
+                    }
+                </td>
+                <td>@joueur.Jeux.Sum(joueur => joueur.ScoreJoueur)</td>
+            </tr>
+        }
+    </tbody>
+</table>

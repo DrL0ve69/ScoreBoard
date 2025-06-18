@@ -5,11 +5,10 @@ namespace ScoreBoard.ViewModels;
 
 public class DataViewmodel
 {
-    private readonly DB_ScoreBoardContext _context;
-    public List<Joueur> Joueurs_VM => _context.Joueurs.ToList();
-    public List<Jeu> Jeux_VM => _context.Jeux.ToList();
+    public List<Joueur> Joueurs_VM { get; set; }
+    public List<Jeu> Jeux_VM { get; set; }
     public Jeu? JeuSelectionne { get; set; } = null;
-    public Joueur? JoueurSelectionne { get; set; } = null;
+    public Joueur? JoueurSelectionne => Joueurs_VM[0];
     public int NombreJoueurs => Joueurs_VM.Count;
     public int NombreJeux => Jeux_VM.Count;
 }
