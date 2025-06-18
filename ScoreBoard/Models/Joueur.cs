@@ -17,7 +17,7 @@ namespace ScoreBoard.Models
 
         [Required(ErrorMessage = "Prénom ne peut pas être nul")]
         [DisplayName("Prénom")]
-        [Length(2,20,ErrorMessage = "Le prénom doit contenir entre 2 et 20 caractères.")]
+        [StringLength(20, MinimumLength = 2, ErrorMessage = "Le prénom doit contenir entre 2 et 20 caractères.")]
         public string Prenom { get; set; }
 
         [DisplayName("Équipe")]
