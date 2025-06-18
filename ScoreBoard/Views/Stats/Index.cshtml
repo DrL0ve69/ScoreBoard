@@ -69,7 +69,7 @@
                 <td>
                     @foreach (var jeu in joueur.Jeux)
                     {
-                        <span class="badge bg-secondary">@jeu.Nom</span>
+                        <span class="badge bg-secondary">@jeu.Nom: @jeu.ScoreJoueur</span>
                     }
                 </td>
                 <td>@joueur.Jeux.Sum(joueur => joueur.ScoreJoueur)</td>
@@ -78,3 +78,14 @@
     </tbody>
 </table>
 
+<h3>Les jeux par ordre alphabétique:</h3>
+<ul>
+
+
+@foreach (var jeu in Model.OdreAplhaJeu())
+{
+        <li>
+            <a asp-controller="Jeu" asp-action="Details" asp-route-id="@jeu.Id">@jeu.Nom</a>
+        </li>
+}
+</ul>

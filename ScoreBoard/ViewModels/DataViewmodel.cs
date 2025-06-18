@@ -11,4 +11,8 @@ public class DataViewmodel
     public Joueur? JoueurSelectionne => Joueurs_VM[0];
     public int NombreJoueurs => Joueurs_VM.Count;
     public int NombreJeux => Jeux_VM.Count;
+    public List<Jeu> OdreAplhaJeu() 
+    {
+        return Jeux_VM.OrderBy(j => j.Nom).ToList();
+    }
 }
