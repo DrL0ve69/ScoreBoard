@@ -1,2 +1,20 @@
-﻿<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+﻿@*
+    ﻿ Bibliothèque de définitions des règles de validation pour les annotation existantes 
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+*@
+
+@* Utiliser un CDN si les librairies ne sont pas installées dans le projet. *@
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation-unobtrusive@4.0.0/dist/jquery.validate.unobtrusive.min.js"></script>
+@* Ajout des règles ici :     CLIENT SIDE *@
+
+<script>
+    $.validator.addMethod("datepasseevalid", function (value, element) {
+
+        var dateToday = new Date();
+        return new Date(value) <= dateToday;
+    }, "JQuery Client-Side: Ne peut pas être dans le futur");
+
+    $.validator.unobtrusive.adapters.addBool("datepasseevalid");
+</script>

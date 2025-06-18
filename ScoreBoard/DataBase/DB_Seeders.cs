@@ -68,10 +68,18 @@ public static class DB_Seeders
         }
         if (!context.Jeux.Any())
         {
+            List<int> idRecharges = new List<int>();
+            _listeSeedJoueurs.ForEach(joueur => idRecharges.Add(joueur.Id));
+
+            int compteur = 0;
+
             foreach (Jeu jeu in _listeSeedJeux) 
             {
+                if (compteur >= idRecharges.Count()) compteur = 0;
+                jeu.JoueurId = idRecharges[compteur];
                 // Associer le joueur à chaque jeu en utilisant l'ID du joueur
                 jeu.Joueur = _listeSeedJoueurs.FirstOrDefault(j => j.Id == jeu.JoueurId);
+                compteur++;
             }
             context.Jeux.AddRange(_listeSeedJeux);
             context.SaveChanges();

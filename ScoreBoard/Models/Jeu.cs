@@ -23,6 +23,7 @@ namespace ScoreBoard.Models
         [Required(ErrorMessage = "La date de sortie est obligatoire.")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DatePasseeValid]
         [Display(Name = "Date de sortie")]
         public DateTime DateSortie 
         { 
@@ -52,6 +53,7 @@ namespace ScoreBoard.Models
         [Required(ErrorMessage = "La date d'enregistrement est obligatoire.")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DatePasseeValid]
         [Display(Name = "Date d'enregistrement")]
         public DateTime DateEnregistrement 
         {
