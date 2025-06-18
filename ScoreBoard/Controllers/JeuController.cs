@@ -43,5 +43,18 @@ namespace ScoreBoard.Controllers
             }
             return View(jeu);
         }
+        public IActionResult Supprimer(int id)
+        {
+            try 
+            {
+                _jeuRepository.Supprimer(id);
+                return RedirectToAction("Index");
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Log the exception (ex) if necessary
+                return NotFound($"Jeu with ID {id} not found.");
+            }
+        }
     }
 }

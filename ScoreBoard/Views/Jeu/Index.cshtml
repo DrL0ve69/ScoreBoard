@@ -27,14 +27,42 @@
                     <a class="btn btn-secondary" href="@Url.Action("Modifier", "Jeu", new { id = jeu.Id })">
                         Modifier
                     </a>
-                    <a class="btn btn-danger" href="@Url.Action("Supprimer", "Jeu", new { id = jeu.Id })">
-                        Supprimer
-                    </a>
+                    <!-- Button trigger modal -->
+                    <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-@jeu.Id">Supprimer</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+
+
+@foreach (var jeu in Model)
+{
+    <!-- Modal -->
+    <div class="modal fade" id="modal-@jeu.Id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel-@jeu.Id">Veuillez confirmer la suppression</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Vous êtes sur le point de supprimer le jeu: <strong>@jeu.Nom</strong>. Êtes-vous sûr de vouloir continuer ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+
+                    <!-- Bouton qui supprime après le message de confirmation -->
+                    <a class="btn btn-danger" asp-route-id="@jeu.Id" asp-action="Supprimer">Supprimer jeu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+}
+
+
 
 
 @*

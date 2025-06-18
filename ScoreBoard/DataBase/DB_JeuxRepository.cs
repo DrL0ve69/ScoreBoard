@@ -46,7 +46,12 @@ namespace ScoreBoard.DataBase
 
         public void Supprimer(int id)
         {
+            Joueur joueur = _context.Joueurs.Include(j => j.Jeux).FirstOrDefault(j => j.Jeux.Any(jeu => jeu.Id == id));
+            joueur.Jeux.RemoveAll(j => j.Id == id); // Retrait du jeu de la liste des jeux du joueur
+            // Suppression d'un jeu par son ID
             _context.Jeux.Remove(GetJeu(id));
+
+
             _context.SaveChanges();
         }
     }
