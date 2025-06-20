@@ -30,15 +30,47 @@ namespace ScoreBoard.Controllers
         // GET: Jeu/Ajouter
         public IActionResult Ajouter()
         {
+            ViewBag.Action = "Ajouter";
             return View();
         }
 
         [HttpPost]
         public IActionResult Ajouter(Jeu jeu)
         {
+            ViewBag.Action = "Ajouter";
             if (ModelState.IsValid)
             {
                 _jeuRepository.Ajouter(jeu);
+                return RedirectToAction("Index");
+            }
+            return View(jeu);
+        }
+        // GET: Jeu/Modifier/5
+        public IActionResult Modifier(int id)
+        {
+            try 
+            {
+                Jeu? jeu = _jeuRepository.GetJeu(id);
+                if (jeu == null)
+                {
+                    return NotFound($"Jeu with ID {id} not found.");
+                }
+                ViewBag.Action = "Modifier";
+                return View("Ajouter",jeu);
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Log the exception (ex) if necessary
+                return NotFound($"Jeu with ID {id} not found.");
+            }
+        }
+        [HttpPost]
+        public IActionResult Modifier(Jeu jeu)
+        {
+            ViewBag.Action = "Modifier";
+            if (ModelState.IsValid)
+            {
+                _jeuRepository.Modifier(jeu);
                 return RedirectToAction("Index");
             }
             return View(jeu);

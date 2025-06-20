@@ -1,5 +1,8 @@
 ﻿@model ScoreBoard.Models.Jeu
-
+@{
+    //string actionName = ViewContext.RouteData.Values["action"].ToString();
+    string action = ViewBag.Action; // Assuming this is the action name for adding a game
+}
 
 <h1>Ajouter</h1>
 
@@ -7,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Ajouter">
+        <form asp-action="@action">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Nom" class="control-label"></label>
