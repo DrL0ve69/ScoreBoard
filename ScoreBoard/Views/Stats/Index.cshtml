@@ -1,11 +1,20 @@
 ﻿@model DataViewmodel
 @{
     ViewData["Title"] = "Stats";
+    int indexJoueur = Model.Joueurs_VM.IndexOf(Model.JoueurSelectionne);
 }
 <h1>Stats: LE TOP 1</h1>
 <p>
     Nombre de jeux: @Model.NombreJeux<br />
     Nombre de joueurs: @Model.NombreJoueurs<br />
+    <ul class="d-flex" style="list-style: none;">
+        <li class="mx-3">
+            <a class="btn btn-primary"  asp-action="Index">Joueur précédent</a>
+        </li>
+        <li>
+            <a class="btn btn-primary"  asp-action="Index">Joueur suivant</a>
+        </li>
+    </ul>
 </p>
 <div>
     <h4>Joueur</h4>
@@ -89,3 +98,26 @@
         </li>
 }
 </ul>
+
+
+@*
+
+@{
+    var prevDisabled = !Model.PageJoueurs.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.PageJoueurs.HasNextPage ? "disabled" : "";
+}
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageJoueurs.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageJoueurs.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
+*@

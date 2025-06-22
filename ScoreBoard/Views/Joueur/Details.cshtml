@@ -2,12 +2,23 @@
 
 @{
     ViewData["Title"] = "Details";
+    // Remplacer par l'index plutôt que le id pour la navigation entre les joueurs
+    int? idSuivant = Model?.Id + 1;
+    int? idPrecedent = Model?.Id - 1;
 }
 
 <h1>Details</h1>
 
 <div>
-    <h4>Joueur</h4>
+    <h4>Joueur @Model.Id</h4>
+    <ul class="d-flex" style="list-style: none;">
+        <li class="mx-3">
+            <a class="btn btn-primary" asp-route-id="@idPrecedent" asp-action="Details">Joueur précédent</a>
+        </li>
+        <li>
+            <a class="btn btn-primary" asp-route-id="@idSuivant" asp-action="Details">Joueur suivant</a>
+        </li>
+    </ul>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
