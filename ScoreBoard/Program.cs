@@ -27,8 +27,8 @@ app.MapControllerRoute(
     pattern: "{controller=Dashboard}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Stats}/{action=Index}/{sortOrder?}/{pageNumber?}/{currentFilter?}");
+    name: "default2",
+    pattern: "{controller=Stats}/{action=Index}/{sortOrder}/{currentFilter}/{searchString}/{pageNumber?}");
 
 DB_Seeders.Seed(app);
 app.Run();

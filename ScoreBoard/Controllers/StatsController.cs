@@ -28,7 +28,7 @@ namespace ScoreBoard.Controllers
         }
         */
         [HttpGet]
-
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(
             string sortOrder,
             string currentFilter,
@@ -40,7 +40,7 @@ namespace ScoreBoard.Controllers
             ViewData["CurrentSort"] = sortOrder;
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["CourrielSortParm"] = sortOrder == "Courriel" ? "courriel_desc" : "Courriel";
-            ViewData["CurrentFilter"] = searchString;
+
             if (searchString != null)
             {
                 pageNumber = 1;
@@ -49,10 +49,13 @@ namespace ScoreBoard.Controllers
             {
                 searchString = currentFilter;
             }
-            var joueurs = _joueurRepository.ListeJoueurs.AsQueryable();
+
+            ViewData["CurrentFilter"] = searchString;
+            IQueryable<Joueur> joueurs = _joueurRepository.ListeJoueurs.AsQueryable();
             if (!String.IsNullOrEmpty(searchString))
             {
-                joueurs = joueurs.Where(j => j.Nom.ToUpper().Contains(searchString.ToUpper()));
+                joueurs = joueurs.Where(j => j.Nom.ToUpper().Contains(searchString.ToUpper()) ||
+                    j.Prenom.ToUpper().Contains(searchString.ToUpper()));
             }
             switch (sortOrder)
             {

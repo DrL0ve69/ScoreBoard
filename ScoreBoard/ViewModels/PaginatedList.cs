@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ScoreBoard.ViewModels;
 
-public class PaginatedList<T> : List<T>, IAsyncQueryProvider // where T : class
+public class PaginatedList<T> : List<T> // where T : class
 {
     public int PageIndex { get; private set; }
     public int TotalPages { get; private set; }
@@ -35,28 +35,4 @@ public class PaginatedList<T> : List<T>, IAsyncQueryProvider // where T : class
         return new PaginatedList<T>(items, count, pageIndex, pageSize);
     }
 
-    public TResult ExecuteAsync<TResult>(Expression expression, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public IQueryable CreateQuery(Expression expression)
-    {
-        throw new NotImplementedException();
-    }
-
-    public IQueryable<TElement> CreateQuery<TElement>(Expression expression)
-    {
-        throw new NotImplementedException();
-    }
-
-    public object? Execute(Expression expression)
-    {
-        throw new NotImplementedException();
-    }
-
-    public TResult Execute<TResult>(Expression expression)
-    {
-        throw new NotImplementedException();
-    }
 }
