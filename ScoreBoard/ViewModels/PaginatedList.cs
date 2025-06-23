@@ -1,14 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
+using ScoreBoard.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 
 
 namespace ScoreBoard.ViewModels;
 
-public class PaginatedList<T> : List<T> // where T : class
+public class PaginatedList<T> : List<T>, IAsyncQueryProvider // where T : class
 {
     public int PageIndex { get; private set; }
     public int TotalPages { get; private set; }
@@ -30,5 +33,30 @@ public class PaginatedList<T> : List<T> // where T : class
         var count = await source.CountAsync();
         var items = await source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
         return new PaginatedList<T>(items, count, pageIndex, pageSize);
+    }
+
+    public TResult ExecuteAsync<TResult>(Expression expression, CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IQueryable CreateQuery(Expression expression)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IQueryable<TElement> CreateQuery<TElement>(Expression expression)
+    {
+        throw new NotImplementedException();
+    }
+
+    public object? Execute(Expression expression)
+    {
+        throw new NotImplementedException();
+    }
+
+    public TResult Execute<TResult>(Expression expression)
+    {
+        throw new NotImplementedException();
     }
 }
